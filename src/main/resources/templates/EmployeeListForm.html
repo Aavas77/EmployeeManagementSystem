@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="https:/www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<th:block th:insert="Header.html"></th:block>
+
+	<div class="container-fluid">
+
+		<div class="card">
+			<div class="card-header text-center bg-primary text-white">
+				<h5>Employee List</h5>
+			</div>
+			<div class="card-body">
+			
+				<a href="/employee/excel"><input type="submit" value="Excel" class="btn btn-success btn"></a>
+				<a href="/employee/pdf"><input type="submit" value="PDF" class="btn btn-success btn"></a>
+
+				<table class="table table-striped">
+
+					<thead>
+						<tr>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Phone</th>
+							<th>Company</th>
+							<th>City</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+
+
+
+					<tbody>
+						<tr th:each="emp : ${empList}">
+							
+							<td>[[${emp.fname}]]</td>
+							<td>[[${emp.lname}]]</td>
+							<td>[[${emp.phone}]]</td>
+							<td>[[${emp.company}]]</td>
+							<td>[[${emp.address.city}]]</td>
+							<td>
+								<a th:href="@{/employee/edit(id=${emp.id})}"><input
+									type="submit" value="Edit" class="btn btn-success btn-sm"></a>
+								<a th:href="@{/employee/delete(id=${emp.id})}"><input
+									type="submit" value="Delete" class="btn btn-danger btn-sm"></a>
+								<a th:href="@{/employee/view(id=${emp.id})}"><input
+									type="submit" value="View" class="btn btn-primary btn-sm"></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+			<div class="card-footer text-center bg-warning">copyright@2023</div>
+		</div>
+		</div>
+</body>
+</html>
